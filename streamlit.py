@@ -52,20 +52,16 @@ parameters = {'model__alpha':[1, 10]}
 grid = GridSearchCV(pipe, parameters,cv=5)
 #fit the grid search
 grid.fit(X_train,y_train)
-# best estimator
-# print(grid.best_score_)
-# print(grid.best_estimator_)
-# best model
 best_model = grid.best_estimator_
 best_model.fit(X_train,y_train)
 st.write(best_model.score(X_test,y_test))
-###############################{AVEC PICKLE}################################################################
+###############################{LOAD OUR MODEL VIA PICKLE}################################################################
 import pickle
 with open('car.pkl', 'rb') as file:
     best_modell = pickle.load(file)
 best_modell.fit(X_train,y_train)
 st.write(best_modell.score(X_test,y_test))
-###################{APPLICATION STREAMLIT}#######################################################################
+###################{STREAMLIT APPLICATION }#######################################################################
 st.title('Predicting Car Prices')
 
 # Définition des variables
