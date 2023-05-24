@@ -1,12 +1,12 @@
 import pandas as pd
 import streamlit as st
 from sklearn.model_selection import train_test_split
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import MinMaxScaler, RobustScaler
-from sklearn.impute import SimpleImputer
-from sklearn.linear_model import LinearRegression, Ridge
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.compose import ColumnTransformer
+# from sklearn.pipeline import Pipeline
+# from sklearn.preprocessing import MinMaxScaler, RobustScaler
+# from sklearn.impute import SimpleImputer
+# from sklearn.linear_model import LinearRegression, Ridge
+# from sklearn.preprocessing import OneHotEncoder
+# from sklearn.compose import ColumnTransformer
 
 
 df = pd.read_csv('cleaned_data.csv')
@@ -59,8 +59,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.8, random
 import pickle
 with open('car.pkl', 'rb') as file:
     best_modell = pickle.load(file)
-best_modell.fit(X_train,y_train)
-st.write(best_modell.score(X_test,y_test))
+# best_modell.fit(X_train,y_train)
+# st.write(best_modell.score(X_test,y_test))
 ###################{STREAMLIT APPLICATION }#######################################################################
 st.title('Predicting Car Prices')
 
