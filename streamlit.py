@@ -18,43 +18,43 @@ X = df.drop('price', axis=1)
 X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.8, random_state=42)
 
 
-categorial_features = ['symboling', 'fueltype', 'aspiration', 'doornumber',  'carbody', 'drivewheel', 'enginelocation', 'enginetype', 'fuelsystem', 'marck', 'model'   ]
-numeric_features = ['wheelbase', 'carlength', 'carwidth', 'carheight', 'curbweight',
-        'enginesize', 'boreratio', 'stroke',
-       'compressionratio', 'horsepower', 'peakrpm', 'citympg', 'highwaympg', 'cylindernumber']
+# categorial_features = ['symboling', 'fueltype', 'aspiration', 'doornumber',  'carbody', 'drivewheel', 'enginelocation', 'enginetype', 'fuelsystem', 'marck', 'model'   ]
+# numeric_features = ['wheelbase', 'carlength', 'carwidth', 'carheight', 'curbweight',
+#         'enginesize', 'boreratio', 'stroke',
+#        'compressionratio', 'horsepower', 'peakrpm', 'citympg', 'highwaympg', 'cylindernumber']
 
 
 
-numeric_transformer = Pipeline([
-        #('imputer', SimpleImputer(strategy='mean')),
-        ('rbscaler' , RobustScaler()),  
-        ])
-categorical_transformer = OneHotEncoder(handle_unknown='ignore')
+# numeric_transformer = Pipeline([
+#         #('imputer', SimpleImputer(strategy='mean')),
+#         ('rbscaler' , RobustScaler()),  
+#         ])
+# categorical_transformer = OneHotEncoder(handle_unknown='ignore')
 
 
-preprocessor = ColumnTransformer(
-    transformers=[
-        ('num', numeric_transformer, numeric_features),
-        ('cat', categorical_transformer, categorial_features)
-    ]
-)
+# preprocessor = ColumnTransformer(
+#     transformers=[
+#         ('num', numeric_transformer, numeric_features),
+#         ('cat', categorical_transformer, categorial_features)
+#     ]
+# )
 
-model = Ridge()
-pipe = Pipeline([
-     ('prep', preprocessor),
-     ('model', model)
-])
+# model = Ridge()
+# pipe = Pipeline([
+#      ('prep', preprocessor),
+#      ('model', model)
+# ])
 
-from sklearn.model_selection import GridSearchCV
-parameters = {'model__alpha':[1, 10]}
+# from sklearn.model_selection import GridSearchCV
+# parameters = {'model__alpha':[1, 10]}
 
-# define the grid search
-grid = GridSearchCV(pipe, parameters,cv=5)
-#fit the grid search
-grid.fit(X_train,y_train)
-best_model = grid.best_estimator_
-best_model.fit(X_train,y_train)
-st.write(best_model.score(X_test,y_test))
+# # define the grid search
+# grid = GridSearchCV(pipe, parameters,cv=5)
+# #fit the grid search
+# grid.fit(X_train,y_train)
+# best_model = grid.best_estimator_
+# best_model.fit(X_train,y_train)
+# st.write(best_model.score(X_test,y_test))
 ###############################{LOAD OUR MODEL VIA PICKLE}################################################################
 import pickle
 with open('car.pkl', 'rb') as file:
